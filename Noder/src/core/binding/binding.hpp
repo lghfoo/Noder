@@ -1,0 +1,5 @@
+namespace Binding {
+	class Bindable {
+
+	};
+}
