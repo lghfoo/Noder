@@ -16,22 +16,36 @@ namespace Noder {
 			if (this->data != nullptr && this->data != data)
 				delete this->data;
 			this->data = data;
-			if (!flush_data_listeners.IsEmpty()) {
-				for (auto listener : flush_data_listeners) {
-					listener(data);
-				}
+			for (auto listener : flush_data_listeners) {
+				listener(data);
+			}
+		}
+		void UpdateData(PObject data) {
+			if (this->data) {
+				this->data->UpdateValue(data);
+			}
+			for (auto listener : update_data_listeners) {
+				listener(data);
 			}
 		}
 		void AddFlushDataListener(const FlushDataListener& listener) {
 			this->flush_data_listeners.Append(listener);
 		}
 
+		void RemoveFlushDataListener(const FlushDataListener& listener) {
+			this->flush_data_listeners.Remove(listener);
+		}
+
 		void AddUpdateDataListener(const UpdateDataListener& listener) {
 			this->update_data_listeners.Append(listener);
 		}
+
+		void RemoveUpdateDataListener(const UpdateDataListener& listener) {
+			this->update_data_listeners.Remove(listener);
+		}
 		template<typename Type>
-		Type GetData() {
-			auto ret = dynamic_cast<Type>(data);
+		Type* GetData() {
+			auto ret = dynamic_cast<Type*>(data);
 			if (!ret) {
 				return nullptr;
 			}

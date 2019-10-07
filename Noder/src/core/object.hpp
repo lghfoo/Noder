@@ -10,6 +10,10 @@ namespace Noder {
 			return String::ToString(reinterpret_cast<unsigned long long>(this));
 		}
 
+		virtual ~NObject() {
+
+		}
+
 	};
 
 }

@@ -8,12 +8,17 @@ namespace Mather {
 	struct Number : public Data{
 		Type value;
 		Number(const Type& value = 0):value(value){}
-		template<class RType>
-		auto operator+(const Number<RType> rhs) -> decltype(value + rhs.value){
-			return value + rhs.value;
+		virtual PObject GetValue()override {
+			return &value;
 		}
-
+		virtual void UpdateValueImpl(PObject data)override {
+			this->value = *static_cast<Type*>(data);
+		}
 	};
+	template<class LType, class RType>
+	auto operator+(const Number<LType> lhs, const Number<RType> rhs)->decltype(lhs.value + rhs.value) {
+		return lhs.value + rhs.value;
+	}
 
 	template<class LType, class RType>
 	auto operator+(const LType& lhs, const Number<RType> rhs) -> decltype(lhs + rhs.value) {
@@ -24,6 +29,7 @@ namespace Mather {
 	auto operator+(const Number<LType>& lhs, RType rhs) -> decltype(lhs.value + rhs) {
 		return lhs.value + rhs;
 	}
+
 
 	template<class T>
 	ostream& operator<<(ostream& out, const Number<T> number) {

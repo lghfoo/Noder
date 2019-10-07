@@ -12,6 +12,11 @@ namespace Mather {
 			auto d = 3 + a;
 			auto e = b + 10;
 			cout << c << " " << d << " " << e << endl;
+
+			Number<int> f = 30;
+			cout << a << endl;
+			a.UpdateValue(f.GetValue());
+			cout << a << endl;
 		}
 
 		

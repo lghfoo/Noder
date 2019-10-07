@@ -6,6 +6,7 @@
 #include"../src/core/noder/node.hpp"
 #include"../src/applications/mather/op_node.hpp"
 #include<algorithm>
+#include<map>
 using namespace std;
 using namespace Mather;
 using namespace Test;

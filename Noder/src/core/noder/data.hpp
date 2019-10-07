@@ -9,18 +9,20 @@ namespace Noder {
 		//using PAfterUpdateDataListener = AfterUpdateDataListener *;
 		using UpdateDataListener = Listener<void, PObject>;
 		using AfterUpdateDataListener = Listener<void, PObject>;
-		void Update(PObject data) {
+		void UpdateValue(PObject data) {
 			// todo : skip?
 			for (auto listener : update_data_listeners) {
 				listener(data);
 			}
-			this->UpdateImpl(data);
+			this->UpdateValueImpl(data);
 			for (auto listener : after_update_data_listeners) {
 				listener(data);
 			}
 		}
-		virtual void UpdateImpl(PObject data) {
-
+		virtual PObject GetValue(){
+			return nullptr;
+		}
+		virtual void UpdateValueImpl(PObject data) {
 		}
 		void AddUpdateDataListener(const UpdateDataListener& listener) {
 			update_data_listeners.Append(listener);

@@ -44,9 +44,6 @@ namespace Mather {
 			}
 		}
 	protected:
-		//InputPort* input_port_1 = nullptr;
-		//InputPort* input_port_2 = nullptr;
-		//OutputPort* output_port = nullptr;
 		Pointer<InputPort> input_port_1;
 		Pointer<InputPort> input_port_2;
 		Pointer<OutputPort> output_port;
@@ -54,30 +51,48 @@ namespace Mather {
 
 	class UnaryOpNode : public Node {
 	public:
-		UnaryOpNode(InputPort* const input_port = nullptr, OutputPort* const output_port = nullptr)
-			: input_port(input_port), output_port(output_port){
+		//UnaryOpNode(InputPort* const input_port = nullptr, OutputPort* const output_port = nullptr)
+		//	: input_port(input_port), output_port(output_port){
 
+		//}
+		UnaryOpNode() {
+			this->SetInputPort(Pointer<InputPort>(new InputPort()));
+			this->SetOutputPort(Pointer<OutputPort>(new OutputPort()));
 		}
-
-		void SetInputPort(InputPort* const input_port) {
+		Pointer<InputPort> GetInputPort() {
+			return input_port;
+		}
+		Pointer<OutputPort> GetOutputPort() {
+			return output_port;
+		}
+	private:
+		void SetInputPort(const Pointer<InputPort>& input_port) {
 			this->input_port = input_port;
 			if (this->input_port) {
-				this->input_port->AddFlushDataListener([&](Data* data) {
-					if (this->input_port->HasData() && output_port) {
-						this->ProcessData();
-					}
-				});
+				this->input_port->AddFlushDataListener(flush_data_listener);
+				this->input_port->AddUpdateDataListener(update_data_listener);
 			}
 		}
-		void SetOutputPort(OutputPort* const output_port) {
+		void SetOutputPort(const Pointer<OutputPort>& output_port) {
 			this->output_port = output_port;
-			if (input_port->HasData() && this->output_port) {
+			if (this->output_port) {
+				this->output_port->AddFlushDataListener(flush_data_listener);
+			}
+		}
+	private:
+		Port::UpdateDataListener update_data_listener = [&](PObject data) {
+			if (this->input_port->HasData() && output_port) {
 				this->ProcessData();
 			}
-		}
+		};
+		Port::FlushDataListener flush_data_listener = [&](Data* data) {
+			if (this->input_port->HasData() && output_port) {
+				this->ProcessData();
+			}
+		};
 	protected:
-		InputPort* input_port = nullptr;
-		OutputPort* output_port = nullptr;
+		Pointer<InputPort> input_port;
+		Pointer<OutputPort> output_port;
 	};
 
 	template<class Type1, class Type2, class ResType>

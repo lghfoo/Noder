@@ -106,5 +106,14 @@
     <ClInclude Include="test\applications\mather\number_test.hpp">
       <Filter>文件\test\applications\mather</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\mather\node_factory.hpp">
+      <Filter>文件\src\applications\mather</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\mather\value_node.hpp">
+      <Filter>文件\src\applications\mather</Filter>
+    </ClInclude>
+    <ClInclude Include="test\applications\mather\value_node_test.hpp">
+      <Filter>文件\test\applications\mather</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

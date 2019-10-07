@@ -127,7 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\applications\mather\data.hpp" />
+    <ClInclude Include="src\applications\mather\node_factory.hpp" />
     <ClInclude Include="src\applications\mather\op_node.hpp" />
+    <ClInclude Include="src\applications\mather\value_node.hpp" />
     <ClInclude Include="src\core\binding\binding.hpp" />
     <ClInclude Include="src\core\noder\connection.hpp" />
     <ClInclude Include="src\core\noder\data.hpp" />
@@ -145,6 +147,7 @@
     <ClInclude Include="test\applications\mather\op_node_test.hpp" />
     <ClInclude Include="test\applications\mather\plus_node_test.hpp" />
     <ClInclude Include="test\applications\mather\substract_node_test.hpp" />
+    <ClInclude Include="test\applications\mather\value_node_test.hpp" />
     <ClInclude Include="test\tester.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
