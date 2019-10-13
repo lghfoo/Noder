@@ -113,84 +113,23 @@ namespace Mather {
 		Pointer<OutputPort> output_port;
 	};
 
-	template<class Type1, class Type2, class ResType>
-	class AddOpNode : public BinaryOpNode {
-	public:
-		virtual void ProcessData()override {
-			auto lhs = input_port_1->GetData<Number<Type1>>();
-			auto rhs = input_port_2->GetData<Number<Type2>>();
-			if (lhs && rhs) {
-				output_port->UpdateData((*lhs + *rhs).GetValue());
-			}
-		}
+#define DECLARE_OP_NODE(op, classname)												\
+	template<class Type1, class Type2, class ResType>							  	\
+	class classname : public BinaryOpNode {										  	\
+	public:																		  	\
+		virtual void ProcessData()override {									  	\
+			auto lhs = input_port_1->GetData<Number<Type1>>();					  	\
+			auto rhs = input_port_2->GetData<Number<Type2>>();					  	\
+			if (lhs && rhs) {													  	\
+				output_port->UpdateData(( *lhs op *rhs).GetValue());				\
+			}																	  	\
+		}																		  	\
 	};
 
-	//class PlusOpNode : public UnaryOpNode {
-	//	PlusOpNode(InputPort* const input_port = nullptr, OutputPort* const output_port = nullptr)
-	//		: UnaryOpNode(input_port, output_port) {
-
-	//	}
-
-	//	virtual void ProcessData()override {
-	//		output_port->FlushData(input_port->GetData<NumericData*>());
-	//	}
-	//};
-
-	
-
-	//class MinusOpNode : public UnaryOpNode {
-	//	MinusOpNode(InputPort* const input_port = nullptr, OutputPort* const output_port = nullptr)
-	//		: UnaryOpNode(input_port, output_port) {
-
-	//	}
-
-	//	virtual void ProcessData()override {
-	//		output_port->FlushData(NumericData::Minus(input_port->GetData<NumericData*>()));
-	//	}
-	//};
-
-//#define DEFINE_NODE_CLASS(CLASS_NAME, OP)																										\
-//	class CLASS_NAME : BinaryOpNode {																											\
-//	public:																																		\
-//		CLASS_NAME(InputPort* const input_port_1 = nullptr, InputPort* const input_port_2 = nullptr, OutputPort* const output_port = nullptr)	\
-//			:BinaryOpNode(input_port_1, input_port_2, output_port) {																			\
-//																																				\
-//		}																																		\
-//		virtual void ProcessData()override {																									\
-//			NumericData* lhs = input_port_1->GetData<NumericData*>();																			\
-//			NumericData* rhs = input_port_2->GetData<NumericData*>();																			\
-//			NumericData* result = NumericData::OP(lhs, rhs);																					\
-//			output_port->FlushData(result);																										\
-//		}																																		\
-//	};
-//DEFINE_NODE_CLASS(AddNode, Add)
-//DEFINE_NODE_CLASS(SubstractNode, Substract)
-//DEFINE_NODE_CLASS(MultiplyNode, Multiply)
-//DEFINE_NODE_CLASS(DivideNode, Divide)
-
-	//class AddNode : BinaryOpNode{
-	//public:
-	//	AddNode(InputPort* const input_port_1 = nullptr, InputPort* const input_port_2 = nullptr, OutputPort* const output_port = nullptr)
-	//		:BinaryOpNode(input_port_1, input_port_2, output_port) {
-
-	//	}
-	//	virtual void ProcessData()override {
-	//		NumericData* lhs = input_port_1->GetData<NumericData*>();
-	//		NumericData* rhs = input_port_2->GetData<NumericData*>();
-	//		NumericData* result = NumericData::Add(lhs, rhs);
-	//		output_port->FlushData(result);
-	//	}
-	//};
-
-	//class SubstractNode {
-
-	//};
-
-	//class MultiplyNode {
-
-	//};
-
-	//class DivideNode {
-
-	//};
+	DECLARE_OP_NODE(+, AddOpNode)
+	DECLARE_OP_NODE(-, SubstractOpNode)
+	DECLARE_OP_NODE(*, MultiplyOpNode)
+	DECLARE_OP_NODE(/, DivideOpNode)
+	DECLARE_OP_NODE(%, ModulusOpNode)
+#undef DECLARE_OP_NODE(op, classname)
 }

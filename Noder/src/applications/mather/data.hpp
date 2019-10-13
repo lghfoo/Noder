@@ -15,51 +15,85 @@ namespace Mather {
 			this->value = *static_cast<Type*>(data);
 		}
 	};
-	template<class LType, class RType>
-	auto operator+(const Number<LType> lhs, const Number<RType> rhs)->Number<decltype(lhs.value + rhs.value)> {
-		return lhs.value + rhs.value;
+
+#define OVERLOAD_OP_FOR_NUMBER(op)																										   \
+	template<class LType, class RType>																									   \
+	auto operator ##op## (const Number<LType> lhs, const Number<RType> rhs)->Number<decltype(lhs.value ##op## rhs.value)> {				   \
+		return lhs.value ##op## rhs.value;																								   \
+	}																																	   \
+																																		   \
+	template<class LType, class RType>																									   \
+	auto operator ##op## (const LType& lhs, const Number<RType> rhs) -> Number<decltype(lhs ##op## rhs.value)> {						   \
+		return lhs ##op## rhs.value;																									   \
+	}																																	   \
+																																		   \
+	template<class LType, class RType>																									   \
+	auto operator ##op## (const Number<LType>& lhs, RType rhs) -> Number<decltype(lhs.value ##op## rhs)> {								   \
+		return lhs.value ##op## rhs;																									   \
+	}
+	
+	OVERLOAD_OP_FOR_NUMBER(+)
+	OVERLOAD_OP_FOR_NUMBER(-)
+	OVERLOAD_OP_FOR_NUMBER(*)
+#undef OVERLOAD_OP_FOR_NUMBER(op)
+
+#define OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(op)																							   \
+	template<class LType, class RType>																									   \
+	auto operator ##op## (const Number<LType> lhs, const Number<RType> rhs)->Number<decltype(lhs.value ##op## rhs.value)> {				   \
+		if(rhs.value==0){																												   \
+			return lhs.value;																											   \
+		}																																   \
+		return lhs.value ##op## rhs.value;																								   \
+	}																																	   \
+																																		   \
+	template<class LType, class RType>																									   \
+	auto operator ##op## (const LType& lhs, const Number<RType> rhs) -> Number<decltype(lhs ##op## rhs.value)> {						   \
+		if (rhs.value == 0) {																											   \
+			return lhs;																													   \
+		}																																   \
+		return lhs ##op## rhs.value;																									   \
+	}																																	   \
+																																		   \
+	template<class LType, class RType>																									   \
+	auto operator ##op## (const Number<LType>& lhs, RType rhs) -> Number<decltype(lhs.value ##op## rhs)> {								   \
+		if (rhs == 0) {																													   \
+			return lhs.value;																											   \
+		}																																   \
+		return lhs.value ##op## rhs;																									   \
 	}
 
-	template<class LType, class RType>
-	auto operator+(const LType& lhs, const Number<RType> rhs) -> Number<decltype(lhs + rhs.value)> {
-		return lhs + rhs.value;
-	}
-
-	template<class LType, class RType>
-	auto operator+(const Number<LType>& lhs, RType rhs) -> Number<decltype(lhs.value + rhs)> {
-		return lhs.value + rhs;
-	}
-
-
-	template<class T>
-	ostream& operator<<(ostream& out, const Number<T> number) {
-		out << number.value;
-		return out;
-	}
-	struct Int8 {
-		char value;
-		Int8(char value = 0):value(value){}
-	};
-	struct Int16 {
-		short value;
-		Int16(short value = 0):value(value){}
-	};
-	struct Int32 {
-		int value;
-		Int32(int value = 0):value(value){}
-	};
-	struct Int64 {
-		long long value;
-		Int64(long long value = 0):value(value){}
-	};
-	struct Float32 {
-		float value;
-		Float32(float value = 0):value(value){}
-	};
-	struct Float64 {
-		double value;
-		Float64(double value = 0):value(value){}
-	};
+	OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(/)
+	OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(%)
+#undef OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(op)
+	//template<class T>
+	//ostream& operator<<(ostream& out, const Number<T> number) {
+	//	out << number.value;
+	//	return out;
+	//}
+	//struct Int8 {
+	//	char value;
+	//	Int8(char value = 0):value(value){}
+	//};
+	//struct Int16 {
+	//	short value;
+	//	Int16(short value = 0):value(value){}
+	//};
+	//struct Int32 {
+	//	int value;
+	//	Int32(int value = 0):value(value){}
+	//};
+	//struct Int64 {
+	//	long long value;
+	//	Int64(long long value = 0):value(value){}
+	//};
+	//struct Float32 {
+	//	float value;
+	//	Float32(float value = 0):value(value){}
+	//};
+	//struct Float64 {
+	//	double value;
+	//	Float64(double value = 0):value(value){}
+	//};
 	
 
 	
