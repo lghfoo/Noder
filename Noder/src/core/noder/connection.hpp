@@ -27,6 +27,7 @@ namespace Noder {
 
 		void SetDstPort(Port* const dst_port) {
 			this->dst_port = dst_port;
+			this->dst_port->UpdateData(this->src_port->GetData<Data>()->GetValue());
 		}
 
 		~Connection() {
