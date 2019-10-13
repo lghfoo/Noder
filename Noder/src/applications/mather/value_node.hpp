@@ -13,7 +13,5 @@ namespace Mather {
                 output_port->UpdateData(data->GetValue());
             }
         }
-
-		
     };
 }

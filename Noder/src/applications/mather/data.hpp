@@ -16,17 +16,17 @@ namespace Mather {
 		}
 	};
 	template<class LType, class RType>
-	auto operator+(const Number<LType> lhs, const Number<RType> rhs)->decltype(lhs.value + rhs.value) {
+	auto operator+(const Number<LType> lhs, const Number<RType> rhs)->Number<decltype(lhs.value + rhs.value)> {
 		return lhs.value + rhs.value;
 	}
 
 	template<class LType, class RType>
-	auto operator+(const LType& lhs, const Number<RType> rhs) -> decltype(lhs + rhs.value) {
+	auto operator+(const LType& lhs, const Number<RType> rhs) -> Number<decltype(lhs + rhs.value)> {
 		return lhs + rhs.value;
 	}
 
 	template<class LType, class RType>
-	auto operator+(const Number<LType>& lhs, RType rhs) -> decltype(lhs.value + rhs) {
+	auto operator+(const Number<LType>& lhs, RType rhs) -> Number<decltype(lhs.value + rhs)> {
 		return lhs.value + rhs;
 	}
 

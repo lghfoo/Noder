@@ -11,6 +11,18 @@ namespace Mather {
 			this->SetInputPort2(Pointer<InputPort>(new InputPort()));
 			this->SetOutputPort(Pointer<OutputPort>(new OutputPort()));
 		}
+
+		Pointer<InputPort> GetInputPort1() {
+			return input_port_1;
+		}
+
+		Pointer<InputPort> GetInputPort2() {
+			return input_port_2;
+		}
+
+		Pointer<OutputPort> GetOutputPort() {
+			return output_port;
+		}
 	private:
 		//BinaryOpNode(InputPort* const input_port_1 = nullptr, InputPort* const input_port_2 = nullptr, OutputPort* const output_port = nullptr){
 		//	this->SetOutputPort(output_port);
@@ -20,29 +32,35 @@ namespace Mather {
 		void SetInputPort1(const Pointer<InputPort>& input_port) {
 			this->input_port_1 = input_port;
 			if (input_port_1) {
-				input_port_1->AddFlushDataListener([&](Data* data) {
-					if (input_port_1->HasData() && input_port_2->HasData() && output_port) {
-						this->ProcessData();
-					}
-				});
+				input_port_1->AddFlushDataListener(flush_data_listener);
+				input_port_1->AddUpdateDataListener(update_data_listener);
 			}
 		}
+
 		void SetInputPort2(const Pointer<InputPort>& input_port) {
 			this->input_port_2 = input_port;
 			if (input_port_2) {
-				input_port_2->AddFlushDataListener([&](Data* const data) {
-					if (input_port_1->HasData() && input_port_2->HasData() && output_port) {
-						this->ProcessData();
-					}
-				});
+				input_port_2->AddFlushDataListener(flush_data_listener);
+				input_port_2->AddUpdateDataListener(update_data_listener);
 			}
 		}
 		void SetOutputPort(const Pointer<OutputPort>& output_port) {
 			this->output_port = output_port;
-			if (input_port_1->HasData() && input_port_2->HasData() && this->output_port) {
-				this->ProcessData();
+			if (this->output_port) {
+				this->output_port->AddFlushDataListener(flush_data_listener);
 			}
 		}
+
+		Port::UpdateDataListener update_data_listener = [&](PObject data) {
+			if (this->input_port_1->HasData() && input_port_2->HasData() && output_port) {
+				this->ProcessData();
+			}
+		};
+		Port::FlushDataListener flush_data_listener = [&](Data* data) {
+			if (this->input_port_1->HasData() && input_port_2->HasData() && output_port) {
+				this->ProcessData();
+			}
+		};
 	protected:
 		Pointer<InputPort> input_port_1;
 		Pointer<InputPort> input_port_2;
@@ -97,7 +115,14 @@ namespace Mather {
 
 	template<class Type1, class Type2, class ResType>
 	class AddOpNode : public BinaryOpNode {
-
+	public:
+		virtual void ProcessData()override {
+			auto lhs = input_port_1->GetData<Number<Type1>>();
+			auto rhs = input_port_2->GetData<Number<Type2>>();
+			if (lhs && rhs) {
+				output_port->UpdateData((*lhs + *rhs).GetValue());
+			}
+		}
 	};
 
 	//class PlusOpNode : public UnaryOpNode {
