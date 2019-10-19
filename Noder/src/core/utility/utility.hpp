@@ -98,6 +98,9 @@ namespace Noder{
 		void SetFunction(const CallbackFunction& func) {
 			p_func = PCallbackFunction(new CallbackFunction(func));
 		}
+		bool IsValid() {
+			return p_func != nullptr;
+		}
 		Ret operator()(Types... args) const {
 			if (p_func == nullptr) {
 				throw std::exception("function is null");

@@ -9,8 +9,9 @@ def preappend_pragma_once(hpp_filename):
         content = hpp_file.read()
     if not content.startswith('#pragma once'):
         content = '#pragma once\n' + content
-    with io.open(hpp_filename, "w+", encoding="utf-8") as hpp_file:
-        hpp_file.write(content) 
+        with io.open(hpp_filename, "w+", encoding="utf-8") as hpp_file:
+            print('preappend #pragma once to {}'.format(hpp_filename))
+            hpp_file.write(content) 
     
 def add_pragma_once(folder):
     files = os.listdir(folder)
