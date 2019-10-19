@@ -3,10 +3,6 @@
 namespace Noder {
 	class Data : public NObject{
 	public:
-		//using UpdateDataListener = Function<void(PObject data)>;
-		//using AfterUpdateDataListener = Function<void(PObject data)>;
-		//using PUpdateDataListener = UpdateDataListener *;
-		//using PAfterUpdateDataListener = AfterUpdateDataListener *;
 		using UpdateDataListener = Listener<void, PObject>;
 		using AfterUpdateDataListener = Listener<void, PObject>;
 		void UpdateValue(PObject data) {
