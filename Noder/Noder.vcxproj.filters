@@ -39,6 +39,33 @@
     <Filter Include="文件\test\applications\mather">
       <UniqueIdentifier>{a38c8fba-e747-4c65-9f51-687d9cd55ead}</UniqueIdentifier>
     </Filter>
+    <Filter Include="文件\src\applications\texter">
+      <UniqueIdentifier>{b3325710-3cba-43ab-b908-2aa1f474700e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\src\applications\imager">
+      <UniqueIdentifier>{b01fb0f3-c6b1-44ba-8f5f-ac8357ff4a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\src\applications\filer">
+      <UniqueIdentifier>{5ad36134-f9bd-4b9a-97ce-a4715ce205f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\src\applications\imager\coder">
+      <UniqueIdentifier>{83ca9178-28d6-4cbd-a76b-700c03bdec12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\test\applications\imager">
+      <UniqueIdentifier>{619f746b-0f6a-4f79-83d7-df0a9e60b3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\test\applications\imager\coder">
+      <UniqueIdentifier>{f5552cb5-c214-4614-a165-17b5ae5ea147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\src\applications\filer\utility">
+      <UniqueIdentifier>{14e3b626-d7df-4142-9960-91a1cb491a0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\test\applications\filer">
+      <UniqueIdentifier>{b1842145-9fc8-4f4c-a943-fb7baeb9108a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件\test\applications\filer\utility">
+      <UniqueIdentifier>{1f214b02-f513-4831-be4b-598c1ac835e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test\main.cpp">
@@ -114,6 +141,39 @@
     </ClInclude>
     <ClInclude Include="test\applications\mather\value_node_test.hpp">
       <Filter>文件\test\applications\mather</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\texter\data.hpp">
+      <Filter>文件\src\applications\texter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\texter\text_node.hpp">
+      <Filter>文件\src\applications\texter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\data.hpp">
+      <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\fimage_node.hpp">
+      <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\image_node.hpp">
+      <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\filer\data.hpp">
+      <Filter>文件\src\applications\filer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\filer\file_node.hpp">
+      <Filter>文件\src\applications\filer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\coder\ppm_coder.hpp">
+      <Filter>文件\src\applications\imager\coder</Filter>
+    </ClInclude>
+    <ClInclude Include="test\applications\imager\coder\test_ppm_coder.hpp">
+      <Filter>文件\test\applications\imager\coder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\filer\utility\buffer_stream.hpp">
+      <Filter>文件\src\applications\filer\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="test\applications\filer\utility\test_buffer_input_stream.hpp">
+      <Filter>文件\test\applications\filer\utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

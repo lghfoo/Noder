@@ -35,7 +35,7 @@ namespace Mather {
 				break;
 			default:
 				break;
-			}
+                        }
 			return ret;
 #undef BIN_OP_CASE(e, classname, type)
 		}

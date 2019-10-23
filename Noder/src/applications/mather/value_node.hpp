@@ -1,10 +1,12 @@
 #pragma once
 #include"..//..//core/noder/node.hpp"
 #include"..//..//core/noder/port.hpp"
+#include"..//..//core/noder/base_node.hpp"
 #include"data.hpp"
 #include"op_node.hpp"
 using namespace Noder;
 namespace Mather {
+#define UnaryOpNode Node_1_1
     class ValueNode : public UnaryOpNode{
 	public:
         virtual void ProcessData()override {

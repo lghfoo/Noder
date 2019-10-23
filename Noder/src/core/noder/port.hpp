@@ -6,12 +6,20 @@ namespace Noder {
 	public:
 		using FlushDataListener = Listener<void, Data* const>;
 		using UpdateDataListener = Listener<void, PObject const>;
+		enum PortType{INPUT_PORT, OUTPUT_PORT};
 	private:
 		String port_name = "Port";
 		Data* data = nullptr;
 		LinkedList<FlushDataListener> flush_data_listeners = LinkedList<FlushDataListener>({});
 		LinkedList<UpdateDataListener> update_data_listeners = LinkedList<UpdateDataListener>({});
 	public:
+		virtual PortType GetPortType()const = 0;
+		bool IsInputPort() {
+			return this->GetPortType() == INPUT_PORT;
+		}
+		bool IsOutputPort() {
+			return this->GetPortType() == OUTPUT_PORT;
+		}
 		void FlushData(Data* const data) {
 			if (this->data != nullptr && this->data != data)
 				delete this->data;
@@ -58,10 +66,16 @@ namespace Noder {
 	};
 
 	class InputPort : public Port {
-
+	public:
+		virtual PortType GetPortType()const override {
+			return PortType::INPUT_PORT;
+		}
 	};
 
 	class OutputPort : public Port {
-
+	public:
+		virtual PortType GetPortType()const override {
+			return PortType::OUTPUT_PORT;
+		}
 	};
 }
