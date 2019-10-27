@@ -8,7 +8,7 @@ namespace Noder {
 		using UpdateDataListener = Listener<void, PObject const>;
 		enum PortType{INPUT_PORT, OUTPUT_PORT};
 	private:
-		String port_name = "Port";
+		//String port_name = "Port";
 		Data* data = nullptr;
 		LinkedList<FlushDataListener> flush_data_listeners = LinkedList<FlushDataListener>({});
 		LinkedList<UpdateDataListener> update_data_listeners = LinkedList<UpdateDataListener>({});

@@ -1,8 +1,7 @@
 #pragma once
-#include"..//..//core/noder/node.hpp"
-#include"..//..//core/noder/port.hpp"
 #include"data.hpp"
 #include"value_node.hpp"
+#include"op_node.hpp"
 using namespace Noder;
 namespace Mather {
 	class NodeFactory{
