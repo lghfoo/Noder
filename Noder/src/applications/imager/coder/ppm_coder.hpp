@@ -1,24 +1,29 @@
 #pragma once
 #include<iostream>
-#include"../..//filer/utility/buffer_stream.hpp"
+#include"..//..//filer/utility/buffer_stream.hpp"
 #include"../data.hpp"
 using namespace std;
 namespace Imager {
+	using BufferInputStream = Filer::BufferInputStream;
 	class PPMCoder {
 	public:
-		ImageData* Decode(const char* src_filename) {
+		Image* Decode(const char* src_filename) {
 			cout << "Decoding...." << endl;
-			ImageData* ret = nullptr;
+			Image* ret = nullptr;
 			BufferInputStream stream(src_filename);
 			if (!stream.StateInvalid()) {
+				cout << "stream valid" << endl;
 				char magic_number[3] = {};
 				stream.NextChars(magic_number);
 				int width = stream.Next<int>(BufferInputStream::Text);
 				int height = stream.Next<int>(BufferInputStream::Text);
 				int max_value = stream.Next<int>(BufferInputStream::Text);
-				stream.SkipWhiteSpaces();
+				// should not use [SkipWhiteSpaces]
+				// because some pixel channel can be white space
+				stream.Skip();
 				if (strcmp(magic_number, "P6") == 0) {
-					ret = new ImageData(width, height);
+					cout << "p6 ppm" << endl;
+					ret = new Image(width, height);
 					for (int i = 0; i < height; i++) {
 						for (int j = 0; j < width; j++) {
 							if (max_value < 256) {
@@ -33,11 +38,17 @@ namespace Imager {
 						}
 					}
 				}
+				else {
+					cout << "other ppm" << endl;
+				}
+			}
+			else {
+				cout << "stream invalid" << endl;
 			}
 			return ret;
 		}
 
-		void Encode(ImageData* image_data, const char* dst_filename) {
+		void Encode(Image* image_data, const char* dst_filename) {
 			cout << "Encoding...." << endl;
 			ofstream dst_file(dst_filename, ios::binary | ios::out);
 			if (dst_file) {

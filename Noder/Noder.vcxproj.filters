@@ -66,6 +66,9 @@
     <Filter Include="文件\test\applications\filer\utility">
       <UniqueIdentifier>{1f214b02-f513-4831-be4b-598c1ac835e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="文件\src\applications\imager\binaryzation">
+      <UniqueIdentifier>{7fb9fd93-12f3-4a1b-9526-eb426dd74e9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test\main.cpp">
@@ -151,9 +154,6 @@
     <ClInclude Include="src\applications\imager\data.hpp">
       <Filter>文件\src\applications\imager</Filter>
     </ClInclude>
-    <ClInclude Include="src\applications\imager\fimage_node.hpp">
-      <Filter>文件\src\applications\imager</Filter>
-    </ClInclude>
     <ClInclude Include="src\applications\imager\image_node.hpp">
       <Filter>文件\src\applications\imager</Filter>
     </ClInclude>
@@ -174,6 +174,15 @@
     </ClInclude>
     <ClInclude Include="test\applications\filer\utility\test_buffer_input_stream.hpp">
       <Filter>文件\test\applications\filer\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\ppm_fimage_node.hpp">
+      <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\node_factory.hpp">
+      <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\binaryzation\otsu_node.hpp">
+      <Filter>文件\src\applications\imager\binaryzation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

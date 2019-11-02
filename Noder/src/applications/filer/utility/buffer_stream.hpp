@@ -10,7 +10,9 @@ namespace Filer {
 	public:
 		BufferInputStream(const char* filename) {
 			std::ifstream stream(filename, std::ios::binary | std::ios::in);
+			printf("open file: %s\n", filename);
 			if (!stream) {
+				printf("cant open file\n");
 				return;
 			}
 			stream.seekg(0, std::ios::end);

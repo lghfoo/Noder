@@ -25,7 +25,7 @@ namespace Noder {
 		void SetInputPort1(const Pointer<InputPort>& input_port) {
 			this->input_port_1 = input_port;
 			if (input_port_1) {
-				input_port_1->AddFlushDataListener(flush_data_listener);
+				//input_port_1->AddFlushDataListener(flush_data_listener);
 				input_port_1->AddUpdateDataListener(update_data_listener);
 			}
 		}
@@ -33,15 +33,15 @@ namespace Noder {
 		void SetInputPort2(const Pointer<InputPort>& input_port) {
 			this->input_port_2 = input_port;
 			if (input_port_2) {
-				input_port_2->AddFlushDataListener(flush_data_listener);
+				//input_port_2->AddFlushDataListener(flush_data_listener);
 				input_port_2->AddUpdateDataListener(update_data_listener);
 			}
 		}
 		void SetOutputPort(const Pointer<OutputPort>& output_port) {
 			this->output_port = output_port;
-			if (this->output_port) {
-				this->output_port->AddFlushDataListener(flush_data_listener);
-			}
+			//if (this->output_port) {
+			//	this->output_port->AddFlushDataListener(flush_data_listener);
+			//}
 		}
 
 		Port::UpdateDataListener update_data_listener = [&](PObject data) {
@@ -76,15 +76,15 @@ namespace Noder {
 		void SetInputPort(const Pointer<InputPort>& input_port) {
 			this->input_port = input_port;
 			if (this->input_port) {
-				this->input_port->AddFlushDataListener(flush_data_listener);
+				//this->input_port->AddFlushDataListener(flush_data_listener);
 				this->input_port->AddUpdateDataListener(update_data_listener);
 			}
 		}
 		void SetOutputPort(const Pointer<OutputPort>& output_port) {
 			this->output_port = output_port;
-			if (this->output_port) {
-				this->output_port->AddFlushDataListener(flush_data_listener);
-			}
+			//if (this->output_port) {
+			//	this->output_port->AddFlushDataListener(flush_data_listener);
+			//}
 		}
 	private:
 		Port::UpdateDataListener update_data_listener = [&](PObject data) {

@@ -11,5 +11,9 @@ namespace Texter {
 		PObject GetValue() override{
 			return &value;
 		}
+
+		bool IsEmpty() {
+			return value.empty();
+		}
 	};
 }
