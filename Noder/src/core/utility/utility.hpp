@@ -34,6 +34,8 @@ namespace Noder{
 		}
 	};
 
+	using byte = unsigned char;
+
 	template<class Type>
 	using Function = function<Type>;
 

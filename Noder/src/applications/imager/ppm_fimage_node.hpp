@@ -14,11 +14,12 @@ namespace Imager {
 			if (!filename_text->IsEmpty()) {
 				PPMCoder coder;
 				Image* image = coder.Decode(filename_text->value.c_str()); 
-				last_result = Pointer<Image>(image);
+				if (last_result)delete last_result;
+				last_result = image;
 				output_port->UpdateData(image);
 			}
 		}
 	private:
-		Pointer<Image> last_result;
+		Image* last_result = nullptr;
 	};
 }

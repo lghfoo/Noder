@@ -7,8 +7,10 @@ namespace Filer {
 		char* buffer = nullptr;
 		int len = 0;
 		int pos = 0;
+		bool is_from_file = false;
 	public:
 		BufferInputStream(const char* filename) {
+			this->is_from_file = true;
 			std::ifstream stream(filename, std::ios::binary | std::ios::in);
 			printf("open file: %s\n", filename);
 			if (!stream) {
@@ -21,6 +23,11 @@ namespace Filer {
 			stream.seekg(0, std::ios::beg);
 			stream.read(buffer, len);
 			stream.close();
+		}
+		~BufferInputStream() {
+			if (this->is_from_file) {
+				delete[]buffer;
+			}
 		}
 		BufferInputStream() {
 

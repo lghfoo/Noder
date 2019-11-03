@@ -184,5 +184,8 @@
     <ClInclude Include="src\applications\imager\binaryzation\otsu_node.hpp">
       <Filter>文件\src\applications\imager\binaryzation</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\imager\binaryzation\bernsen_node.hpp">
+      <Filter>文件\src\applications\imager\binaryzation</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,9 +2,8 @@
 #include"../../core/noder/data.hpp"
 namespace Imager {
 	using namespace Noder;
-	struct Pixel : Data {
+	struct Pixel {
 		unsigned int color = 0xffffffff;
-
 		Pixel() {
 		}
 
@@ -73,19 +72,21 @@ namespace Imager {
 	};
 
 	struct Image {
-		Pixel** pixels = nullptr;
+		Pixel* pixels = nullptr;
 		int width = 0;
 		int height = 0;
 		Image() {
 
 		}
 		Image(int width, int height) {
+			this->SetSize(width, height);
+		}
+
+		void SetSize(int width, int height) {
+			this->ClearData();
 			this->width = width;
 			this->height = height;
-			pixels = new Pixel * [height];
-			for (int i = 0; i < height; i++) {
-				pixels[i] = new Pixel[width];
-			}
+			pixels = new Pixel[width * height]{};
 		}
 
 		int GetWidth() {
@@ -108,19 +109,17 @@ namespace Imager {
 		// ¡ý
 		// y
 		Pixel GetPixel(int x, int y) {
-			return pixels[y][x];
+			return pixels[y * width + x];
 		}
 
 		void SetPixel(int x, int y, const Pixel& pixel) {
-			pixels[y][x] = pixel;
+			pixels[y * width + x] = pixel;
 		}
 
 		Image(const Image& image){
 			if (image.width <= 0 || image.height <= 0)return;
 			if (this->width == image.width && this->height == image.height) {
-				for (int i = 0; i < height; i++) {
-					memcpy(this->pixels[i], image.pixels[i], sizeof(Pixel) * width);
-				}
+				memcpy(this->pixels, image.pixels, sizeof(Pixel) * (height * width));
 				return;
 			}
 			if (this->pixels) {
@@ -128,21 +127,19 @@ namespace Imager {
 			}
 			this->width = image.width;
 			this->height = image.height;
-			this->pixels = new Pixel * [height];
-			for (int i = 0; i < height; i++) {
-				this->pixels[i] = new Pixel[width];
-				memcpy(this->pixels[i], image.pixels[i], sizeof(Pixel) * width);
-			}
+			this->pixels = new Pixel[width * height];
+			memcpy(this->pixels, image.pixels, sizeof(Pixel) * (height * width));
 		}
 
 		void ClearData() {
 			if (!pixels)return;
-			for (int i = 0; i < height; i++) {
-				delete pixels[i];
-			}
-			this->width = this->height = 0;
-			delete pixels;
+			delete[]pixels;
 			this->pixels = nullptr;
+			this->width = this->height = 0;
+		}
+
+		~Image() {
+			this->ClearData();
 		}
 	};
 
@@ -164,6 +161,7 @@ namespace Imager {
 
 		bool HasPixels() { return image->width > 0 && image->height > 0; }
 
+		bool IsInvalid() { return !this->IsValid() || !this->HasPixels(); }
 		//bool IsValid() {
 		//	return image != nullptr;
 		//}

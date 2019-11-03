@@ -13,8 +13,7 @@ namespace Imager {
 			if (!input_image->IsValid() || !input_image->HasPixels())return;
 			printf("Grayen Begin...\n");
 			auto image = input_image->image;
-			target.ClearData();
-			target = Image(image->width, image->height);
+			target.SetSize(image->width, image->height);
 			for (int i = 0; i < image->height; i++) {
 				for (int j = 0; j < image->width; j++) {
 					target.SetPixel(j, i, image->GetPixel(j, i).Grayen());

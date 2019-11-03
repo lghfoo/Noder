@@ -129,6 +129,7 @@
     <ClInclude Include="src\applications\filer\data.hpp" />
     <ClInclude Include="src\applications\filer\file_node.hpp" />
     <ClInclude Include="src\applications\filer\utility\buffer_stream.hpp" />
+    <ClInclude Include="src\applications\imager\binaryzation\bernsen_node.hpp" />
     <ClInclude Include="src\applications\imager\binaryzation\otsu_node.hpp" />
     <ClInclude Include="src\applications\imager\coder\ppm_coder.hpp" />
     <ClInclude Include="src\applications\imager\data.hpp" />

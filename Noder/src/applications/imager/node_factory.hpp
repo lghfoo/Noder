@@ -4,6 +4,7 @@
 #include"ppm_fimage_node.hpp"
 #include"grayen_node.hpp"
 #include"binaryzation/otsu_node.hpp"
+#include"binaryzation/bernsen_node.hpp"
 using namespace Noder;
 namespace Imager {
 	class NodeFactory {
@@ -12,7 +13,8 @@ namespace Imager {
 			IMAGE_VALUE,
 			PPM_FILE_2_IMAGE,
 			GRAYEN,
-			OTSU_BINARYZATION
+			OTSU_BINARYZATION,
+			BERNSEN_BINARYZATION
 		};
 		static Node* CreateNode(const NodeType& type) {
 			Node* ret = nullptr;
@@ -29,6 +31,9 @@ namespace Imager {
 				break;
 			case OTSU_BINARYZATION:
 				ret = new OTSUNode;
+				break;
+			case BERNSEN_BINARYZATION:
+				ret = new BernsenNode;
 				break;
 			default:
 				break;
