@@ -14,9 +14,7 @@ namespace Imager {
 			int hist[gray_scale] = {};
 			for (int i = 0; i < src_image->width; i++) {
 				for (int j = 0; j < src_image->height; j++) {
-					auto grayen_pixel = src_image->GetPixel(i, j).Grayen();
-					auto gray_level = grayen_pixel.GetRed();
-					image.SetPixel(i, j, grayen_pixel);
+					auto gray_level = src_image->GetPixel(i, j).GetRed();
 					hist[gray_level]++;
 				}
 			}
@@ -55,7 +53,7 @@ namespace Imager {
 			printf("threshold: %d\n", threshold);
 			for (int i = 0; i < src_image->width; i++) {
 				for (int j = 0; j < src_image->height; j++) {
-					if (image.GetPixel(i, j).GetRed() < threshold) {
+					if (src_image->GetPixel(i, j).GetRed() < threshold) {
 						image.SetPixel(i, j, Pixel(0, 0, 0));
 					}
 					else {

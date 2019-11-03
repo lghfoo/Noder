@@ -10,18 +10,9 @@ namespace Imager {
 			auto window_size = (int)(input_port_2->GetData<Mather::Number<long long>>()->value);
 			if (!image_data || image_data->IsInvalid() || window_size <= 0)return;
 			auto src_image = image_data->image;
-			image.ClearData();
 			image.SetSize(src_image->width, src_image->height);
 			int WH = src_image->width * src_image->height;
 			constexpr int gray_scale = 0x100;
-			//for (int i = 0; i < src_image->width; i++) {
-			//	for (int j = 0; j < src_image->height; j++) {
-			//		//auto grayen_pixel = src_image->GetPixel(i, j).Grayen();
-			//		//auto gray_level = grayen_pixel.GetRed();
-			//		//image.SetPixel(i, j, grayen_pixel);
-			//		image.SetPixel(i, j, src_image->GetPixel(i, j));
-			//	}
-			//}
 			for (int i = 0; i < src_image->height; i++) {
 				for (int j = 0; j < src_image->width; j++) {
 					int max_gray = 0, min_gray = gray_scale;
