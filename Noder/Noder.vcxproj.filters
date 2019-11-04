@@ -187,5 +187,14 @@
     <ClInclude Include="src\applications\imager\binaryzation\bernsen_node.hpp">
       <Filter>文件\src\applications\imager\binaryzation</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\imager\binaryzation\kittler_node.hpp">
+      <Filter>文件\src\applications\imager\binaryzation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\binaryzation\sauvola_node.hpp">
+      <Filter>文件\src\applications\imager\binaryzation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\binaryzation\niblack_node.hpp">
+      <Filter>文件\src\applications\imager\binaryzation</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

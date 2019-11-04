@@ -130,7 +130,10 @@
     <ClInclude Include="src\applications\filer\file_node.hpp" />
     <ClInclude Include="src\applications\filer\utility\buffer_stream.hpp" />
     <ClInclude Include="src\applications\imager\binaryzation\bernsen_node.hpp" />
+    <ClInclude Include="src\applications\imager\binaryzation\kittler_node.hpp" />
+    <ClInclude Include="src\applications\imager\binaryzation\niblack_node.hpp" />
     <ClInclude Include="src\applications\imager\binaryzation\otsu_node.hpp" />
+    <ClInclude Include="src\applications\imager\binaryzation\sauvola_node.hpp" />
     <ClInclude Include="src\applications\imager\coder\ppm_coder.hpp" />
     <ClInclude Include="src\applications\imager\data.hpp" />
     <ClInclude Include="src\applications\imager\node_factory.hpp" />
