@@ -12,7 +12,8 @@ namespace Mather {
 			INT64_MULTIPLY,
 			INT64_DIVIDE,
 			INT64_MODULUS,
-			INT64_VALUE
+			INT64_VALUE,
+			HISTOGRAM_VALUE
 		};
 		static Node* CreateNode(const NodeType& type) {
 
@@ -30,6 +31,7 @@ namespace Mather {
 			BIN_OP_CASE(INT64_DIVIDE, DivideOpNode, long long)
 			BIN_OP_CASE(INT64_MODULUS, ModulusOpNode, long long)
 			case INT64_VALUE:
+			case HISTOGRAM_VALUE:
 				ret = new ValueNode();
 				break;
 			default:

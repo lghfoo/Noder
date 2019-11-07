@@ -65,4 +65,52 @@ namespace Mather {
 	OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(/)
 	OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(%)
 #undef OVERLOAD_OP_FOR_NUMBER_ZERO_CHECK(op)
+
+	template<typename Type>
+	struct VectorData : Data{
+		std::vector<Type>* data = nullptr;
+		VectorData() {
+
+		}
+		VectorData(int size) {
+			data = new std::vector<Type>(size);
+		}
+		virtual PObject GetValue()override {
+			return data;
+		}
+		virtual void UpdateValueImpl(PObject data)override {
+			this->data = static_cast<vector<Type>*>(data);
+		}
+
+		void SetSize(int size) {
+			if (!data) {
+				data = new std::vector<Type>(size);
+			}
+			else {
+				data->resize(size);
+			}
+		}
+
+		Type Get(int i) {
+			return (*data)[i];
+		}
+
+		void Set(int i, const Type& value) {
+			(*data)[i] = value;
+		}
+
+		Type& operator[](int i) {
+			return (*data)[i];
+		}
+
+		int Size() {
+			return data->size();
+		}
+
+		~VectorData() {
+			if (data) {
+				delete data;
+			}
+		}
+	};
 }

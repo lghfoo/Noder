@@ -136,6 +136,7 @@
     <ClInclude Include="src\applications\imager\binaryzation\sauvola_node.hpp" />
     <ClInclude Include="src\applications\imager\coder\ppm_coder.hpp" />
     <ClInclude Include="src\applications\imager\data.hpp" />
+    <ClInclude Include="src\applications\imager\image_histogram_node.hpp" />
     <ClInclude Include="src\applications\imager\node_factory.hpp" />
     <ClInclude Include="src\applications\imager\ppm_fimage_node.hpp" />
     <ClInclude Include="src\applications\imager\image_node.hpp" />

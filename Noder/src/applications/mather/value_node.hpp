@@ -15,4 +15,6 @@ namespace Mather {
             }
         }
     };
+	using HistogramNode = ValueNode;
+#undef UnaryOpNode
 }

@@ -6,6 +6,7 @@
 #include"binaryzation/otsu_node.hpp"
 #include"binaryzation/bernsen_node.hpp"
 #include"binaryzation/kittler_node.hpp"
+#include"image_histogram_node.hpp"
 using namespace Noder;
 namespace Imager {
 	class NodeFactory {
@@ -16,7 +17,8 @@ namespace Imager {
 			GRAYEN,
 			OTSU_BINARYZATION,
 			BERNSEN_BINARYZATION,
-			KITTLER_BINARYZATION
+			KITTLER_BINARYZATION,
+			IMAGE_HISTOGRAM
 		};
 		static Node* CreateNode(const NodeType& type) {
 			Node* ret = nullptr;
@@ -39,6 +41,8 @@ namespace Imager {
 				break;
 			case KITTLER_BINARYZATION:
 				ret = new KittlerNode;
+			case IMAGE_HISTOGRAM:
+				ret = new ImageHistogramNode;
 			default:
 				break;
 			}
