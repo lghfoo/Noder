@@ -205,5 +205,14 @@
     <ClInclude Include="src\core\noder\base_node.hpp">
       <Filter>文件\src\core\noder</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\filer\utility\utility.hpp">
+      <Filter>文件\src\applications\filer\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\filer\node_factory.hpp">
+      <Filter>文件\src\applications\filer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\texter\nodes.hpp">
+      <Filter>文件\src\applications\texter</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

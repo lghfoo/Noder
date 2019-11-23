@@ -6,10 +6,11 @@ namespace Noder {
 		Port* src_port = nullptr;
 		Port* dst_port = nullptr;
 		Port::UpdateDataListener update_data_listener = [=](PObject const data) {
-			this->dst_port->UpdateData(data);
+			this->dst_port->NotifyUpdate(data);
 		};
 		Port::FlushDataListener flush_data_listener = [=](Data* const data) {
 			this->dst_port->FlushData(data);
+			this->dst_port->UpdateData(this->src_port->GetData<Data>()->GetValue());
 		};
 	public:
 		Connection() {
@@ -27,8 +28,8 @@ namespace Noder {
 
 		void SetDstPort(Port* const dst_port) {
 			this->dst_port = dst_port;
+			this->dst_port->FlushData(this->src_port->GetData<Data>());
 			this->dst_port->UpdateData(this->src_port->GetData<Data>()->GetValue());
-			//this->dst_port->FlushData(this->src_port->GetData<Data>());
 		}
 
 		~Connection() {

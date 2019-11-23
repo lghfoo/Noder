@@ -24,15 +24,21 @@ namespace Noder {
 			if (this->data != nullptr && this->data != data)
 				delete this->data;
 			this->data = data;
-			for (auto listener : flush_data_listeners) {
-				listener(data);
-			}
+			this->NotifyFlush(data);
 		}
 		void UpdateData(PObject data) {
 			if (this->data) {
 				this->data->UpdateValue(data);
+				this->NotifyUpdate(data);
 			}
+		}
+		void NotifyUpdate(PObject data) {
 			for (auto listener : update_data_listeners) {
+				listener(data);
+			}
+		}
+		void NotifyFlush(Data* const data) {
+			for (auto listener : flush_data_listeners) {
 				listener(data);
 			}
 		}

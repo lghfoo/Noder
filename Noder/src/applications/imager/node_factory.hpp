@@ -41,8 +41,10 @@ namespace Imager {
 				break;
 			case KITTLER_BINARYZATION:
 				ret = new KittlerNode;
+				break;
 			case IMAGE_HISTOGRAM:
 				ret = new ImageHistogramNode;
+				break;
 			default:
 				break;
 			}

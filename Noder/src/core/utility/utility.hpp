@@ -11,16 +11,22 @@ using std::to_string;
 using std::function;
 using std::list;
 namespace Noder{
-	class String : public string {
+	class String{
 	public:
-		String(const string& str):string(str) {
+		String(const string& str):str(str) {
 		}
-		String(const char* ptr) :string(ptr) {
+		String(const char* ptr) :str(ptr) {
 		}
 		static String ToString(int x) {
 			return String(to_string(x));
 		}
+		static String ToString(unsigned int x) {
+			return String(to_string(x));
+		}
 		static String ToString(long long x) {
+			return String(to_string(x));
+		}
+		static String ToString(unsigned long long x) {
 			return String(to_string(x));
 		}
 		static String ToString(float x) {
@@ -29,9 +35,11 @@ namespace Noder{
 		static String ToString(double x) {
 			return String(to_string(x));
 		}
-		static String ToString(unsigned long long x) {
-			return String(to_string(x));
+		string ToStdString() {
+			return str;
 		}
+	private:
+		string str;
 	};
 
 	using byte = unsigned char;

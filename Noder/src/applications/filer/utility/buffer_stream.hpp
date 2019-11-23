@@ -2,6 +2,7 @@
 #include<cstdio>
 #include<cctype>
 #include<fstream>
+#include"../..//mather/data.hpp"
 namespace Filer {
 	class BufferInputStream {
 		char* buffer = nullptr;
@@ -47,6 +48,10 @@ namespace Filer {
 			Text
 		};
 
+		int GetPos() {
+			return this->pos;
+		}
+
 		template<typename T>
 		T Next(Mode mode = Binary, Endian endian = LittleEndian) {
 			SkipWhiteSpaces();
@@ -59,6 +64,46 @@ namespace Filer {
 		char NextChar() {
 			if (StateInvalid())return 0;
 			return buffer[pos++];
+		}
+
+		Data* NextNumber(Mather::NumberType type, Mode mode = Mode::Binary, Endian endian = Endian::LittleEndian) {
+			Data* Ret = nullptr;
+			switch (type)
+			{
+			case Mather::UINT8:
+				Ret = new Mather::Number<uint8_t>(Next<uint8_t>(mode, endian));
+				break;
+			case Mather::INT8:
+				Ret = new Mather::Number<int8_t>(Next<int8_t>(mode, endian));
+				break;
+			case Mather::UINT16:
+				Ret = new Mather::Number<uint16_t>(Next<uint16_t>(mode, endian));
+				break;
+			case Mather::INT16:
+				Ret = new Mather::Number<int16_t>(Next<int16_t>(mode, endian));
+				break;
+			case Mather::UINT32:
+				Ret = new Mather::Number<uint32_t>(Next<uint32_t>(mode, endian));
+				break;
+			case Mather::INT32:
+				Ret = new Mather::Number<int32_t>(Next<int32_t>(mode, endian));
+				break;
+			case Mather::UINT64:
+				Ret = new Mather::Number<uint64_t>(Next<uint64_t>(mode, endian));
+				break;
+			case Mather::INT64:
+				Ret = new Mather::Number<int64_t>(Next<int64_t>(mode, endian));
+				break;
+			case Mather::FLOAT32:
+				Ret = new Mather::Number<float_t>(Next<float_t>(mode, endian));
+				break;
+			case Mather::FLOAT64:
+				Ret = new Mather::Number<double_t>(Next<double_t>(mode, endian));
+				break;
+			default:
+				break;
+			}
+			return Ret;
 		}
 
 		template<size_t size>
@@ -187,11 +232,16 @@ namespace Filer {
 			pos += n;											\
 			return ret;											\
 		}
-
-		DECLARE_NEXT_FROM_TEXT(int, "%d%n")
-		DECLARE_NEXT_FROM_TEXT(long long, "%lld%n")
-		DECLARE_NEXT_FROM_TEXT(float, "%f%n")
-		DECLARE_NEXT_FROM_TEXT(double, "%lf%n")
+		DECLARE_NEXT_FROM_TEXT(int8_t, "%hhd%n")
+		DECLARE_NEXT_FROM_TEXT(uint8_t, "%hhu%n")
+		DECLARE_NEXT_FROM_TEXT(int16_t, "%hd%n")
+		DECLARE_NEXT_FROM_TEXT(uint16_t, "%hu%n")
+		DECLARE_NEXT_FROM_TEXT(int32_t, "%d%n")
+		DECLARE_NEXT_FROM_TEXT(uint32_t, "%u%n")
+		DECLARE_NEXT_FROM_TEXT(int64_t, "%lld%n")
+		DECLARE_NEXT_FROM_TEXT(uint64_t, "%llu%n")
+		DECLARE_NEXT_FROM_TEXT(float_t, "%f%n")
+		DECLARE_NEXT_FROM_TEXT(double_t, "%lf%n")
 #undef DECLARE_NEXT_FROM_TEXT(TYPE, FORMAT)
 	};
 }

@@ -5,33 +5,36 @@ namespace Noder {
 	template<int I, int O>
 	class TNode : public Node {
 	private:
-		Pointer<InputPort>InputPorts[I];
-		Pointer<OutputPort>OutputPorts[O];
+		Pointer<InputPort>input_ports[I];
+		Pointer<OutputPort>output_ports[O];
 	public:
 		TNode() {
-			printf("CONSTRUCT TNODE\n");
 			for (int i = 0; i < I; i++) {
-				InputPorts[i] = Pointer<InputPort>(new InputPort());
-				InputPorts[i]->AddUpdateDataListener(update_data_listener);
+				input_ports[i] = Pointer<InputPort>(new InputPort());
+				input_ports[i]->AddUpdateDataListener(update_data_listener);
 			}
 			for (int i = 0; i < O; i++) {
-				OutputPorts[i] = Pointer<OutputPort>(new OutputPort());
+				output_ports[i] = Pointer<OutputPort>(new OutputPort());
+				output_ports[i]->AddFlushDataListener([=](Data* data) {
+					output_ports[i]->UpdateData(data->GetValue());
+				});
 			}
 		}
 		Pointer<InputPort>GetInputPort(int index) {
-			return index >= 0 && index < I ? InputPorts[index] : Pointer<InputPort>();
+			return index >= 0 && index < I ? input_ports[index] : Pointer<InputPort>();
 		}
 
 		Pointer<OutputPort>GetOutputPort(int index) {
-			return index >= 0 && index < O ? OutputPorts[index] : Pointer<OutputPort>();
+			return index >= 0 && index < O ? output_ports[index] : Pointer<OutputPort>();
 		}
 	private:
 		Port::UpdateDataListener update_data_listener = [&](PObject data) {
 			for (int i = 0; i < I; i++) {
-				if (this->InputPorts[i]->HasData()) {
-					this->ProcessData();
+				if (!(this->input_ports[i]->HasData())) {
+					return;
 				}
 			}
+			this->ProcessData();
 		};
 	};
 	class Node_2_1 : public Node{
