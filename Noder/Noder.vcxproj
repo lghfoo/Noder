@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClInclude Include="src\applications\filer\data.hpp" />
     <ClInclude Include="src\applications\filer\file_node.hpp" />
+    <ClInclude Include="src\applications\filer\nodes.hpp" />
     <ClInclude Include="src\applications\filer\utility\buffer_stream.hpp" />
     <ClInclude Include="src\applications\imager\binaryzation\bernsen_node.hpp" />
     <ClInclude Include="src\applications\imager\binaryzation\kittler_node.hpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="src\applications\texter\data.hpp" />
     <ClInclude Include="src\applications\texter\text_node.hpp" />
     <ClInclude Include="src\core\binding\binding.hpp" />
+    <ClInclude Include="src\core\noder\base_node.hpp" />
     <ClInclude Include="src\core\noder\connection.hpp" />
     <ClInclude Include="src\core\noder\data.hpp" />
     <ClInclude Include="src\core\noder\generic_node.hpp" />

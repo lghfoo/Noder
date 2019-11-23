@@ -199,5 +199,11 @@
     <ClInclude Include="src\applications\imager\image_histogram_node.hpp">
       <Filter>文件\src\applications\imager</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\filer\nodes.hpp">
+      <Filter>文件\src\applications\filer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\noder\base_node.hpp">
+      <Filter>文件\src\core\noder</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

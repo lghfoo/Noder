@@ -2,6 +2,38 @@
 #include"node.hpp"
 #include"port.hpp"
 namespace Noder {
+	template<int I, int O>
+	class TNode : public Node {
+	private:
+		Pointer<InputPort>InputPorts[I];
+		Pointer<OutputPort>OutputPorts[O];
+	public:
+		TNode() {
+			printf("CONSTRUCT TNODE\n");
+			for (int i = 0; i < I; i++) {
+				InputPorts[i] = Pointer<InputPort>(new InputPort());
+				InputPorts[i]->AddUpdateDataListener(update_data_listener);
+			}
+			for (int i = 0; i < O; i++) {
+				OutputPorts[i] = Pointer<OutputPort>(new OutputPort());
+			}
+		}
+		Pointer<InputPort>GetInputPort(int index) {
+			return index >= 0 && index < I ? InputPorts[index] : Pointer<InputPort>();
+		}
+
+		Pointer<OutputPort>GetOutputPort(int index) {
+			return index >= 0 && index < O ? OutputPorts[index] : Pointer<OutputPort>();
+		}
+	private:
+		Port::UpdateDataListener update_data_listener = [&](PObject data) {
+			for (int i = 0; i < I; i++) {
+				if (this->InputPorts[i]->HasData()) {
+					this->ProcessData();
+				}
+			}
+		};
+	};
 	class Node_2_1 : public Node{
 	public:
 		Node_2_1() {
