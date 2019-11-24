@@ -101,6 +101,7 @@ namespace Filer {
 			int endian = this->GetInputPort(ENDIAN_INPUT)->GetData<Mather::Number<int>>()->value;
 
 			BufferInputStream stream(buffer_wrapper->buffer, buffer_wrapper->size);
+			stream.SetPos(begin_address);
 			Data* number = stream.NextNumber(static_cast<Mather::NumberType>(number_type), 
 				static_cast<BufferInputStream::Mode>(format), 
 				static_cast<BufferInputStream::Endian>(endian));
