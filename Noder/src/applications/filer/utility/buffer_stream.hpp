@@ -38,8 +38,8 @@ namespace Filer {
 
 		enum Endian
 		{
-			BigEndian,
-			LittleEndian
+			LittleEndian,
+			BigEndian
 		};
 		
 		enum Mode

@@ -29,7 +29,7 @@ namespace Filer {
 			filelen_port->UpdateData(filelen.GetValue());
 		}
 	};
-	class PickBufferFromFilenameNode : public Noder::TNode<3, 2> {
+	class PickBufferFromFileNode : public Noder::TNode<3, 2> {
 	public:
 		enum {
 			FILENAME_INPUT,
@@ -40,7 +40,7 @@ namespace Filer {
 			END_ADDRESS_OUTPUT,
 			BUFFER_OUTPUT
 		};
-		PickBufferFromFilenameNode() {
+		PickBufferFromFileNode() {
 			this->GetInputPort(FILENAME_INPUT)->FlushData(new Text);
 			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(new Mather::Number<uint64_t>);
 			this->GetInputPort(BUFFER_SIZE_INPUT)->FlushData(new Mather::Number<uint64_t>);

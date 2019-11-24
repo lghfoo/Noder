@@ -149,6 +149,7 @@
     <ClInclude Include="src\applications\mather\value_node.hpp" />
     <ClInclude Include="src\applications\texter\data.hpp" />
     <ClInclude Include="src\applications\texter\nodes.hpp" />
+    <ClInclude Include="src\applications\texter\node_factory.hpp" />
     <ClInclude Include="src\applications\texter\text_node.hpp" />
     <ClInclude Include="src\core\binding\binding.hpp" />
     <ClInclude Include="src\core\noder\base_node.hpp" />

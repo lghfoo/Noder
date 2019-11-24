@@ -10,7 +10,8 @@ namespace Mather {
 		UINT32, INT32,
 		UINT64, INT64,
 		FLOAT32,
-		FLOAT64
+		FLOAT64,
+		TYPE_COUNT
 	};
 	template<class Type>
 	struct Number : public Data{
