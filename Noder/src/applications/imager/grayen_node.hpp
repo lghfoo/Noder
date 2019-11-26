@@ -6,6 +6,7 @@ namespace Imager {
 	// show/pass image
 	class GrayenNode : public Node_1_1 {
 	public:
+		GrayenNode(PObject arg = nullptr){}
 		void ProcessData()override {
 			printf("Grayen Process Data\n");
 			if (!this->input_port->HasData())return;

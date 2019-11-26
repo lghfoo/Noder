@@ -5,6 +5,7 @@
 namespace Imager {
 	class ImageHistogramNode : public Noder::Node_1_1 {
 	public:
+		ImageHistogramNode(PObject arg = nullptr){}
 		void ProcessData()override {
 			auto image_data = input_port->GetData<ImageData>();
 			if (!image_data || image_data->IsInvalid())return;

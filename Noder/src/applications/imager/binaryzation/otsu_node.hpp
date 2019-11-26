@@ -4,6 +4,7 @@
 namespace Imager {
 	class OTSUNode : public Noder::Node_1_1 {
 	public:
+		OTSUNode(PObject arg = nullptr) {}
 		virtual void ProcessData() override {
 			auto image_data = input_port->GetData<ImageData>();
 			if (!image_data || image_data->IsInvalid())return;

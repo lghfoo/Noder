@@ -15,7 +15,7 @@ namespace Filer {
 		enum{
 			FILELEN_OUTPUT	// Number<uint64_t>
 		};
-		FilelenNode() {
+		FilelenNode(PObject arg = nullptr) {
 			this->GetInputPort(FILENAME_INPUT)->FlushData(new Text());
 			this->GetOutputPort(FILELEN_OUTPUT)->FlushData(new Mather::Number<uint64_t>());
 		}
@@ -40,7 +40,7 @@ namespace Filer {
 			END_ADDRESS_OUTPUT,
 			BUFFER_OUTPUT
 		};
-		PickBufferFromFileNode() {
+		PickBufferFromFileNode(PObject arg = nullptr) {
 			this->GetInputPort(FILENAME_INPUT)->FlushData(new Text);
 			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(new Mather::Number<uint64_t>);
 			this->GetInputPort(BUFFER_SIZE_INPUT)->FlushData(new Mather::Number<uint64_t>);
@@ -68,7 +68,8 @@ namespace Filer {
 	};
 
 	class PickBufferFromBufferNode : public Noder::Node {
-
+	public:
+		PickBufferFromBufferNode(PObject arg = nullptr){}
 	};
 
 	class PickNumberFromBufferNode : public Noder::TNode<5, 2> {
@@ -84,7 +85,7 @@ namespace Filer {
 			END_ADDRESS_OUTPUT,		// Number<uint64_t>
 			NUMBER_OUTPUT			// Number<???>
 		};
-		PickNumberFromBufferNode() {
+		PickNumberFromBufferNode(PObject arg = nullptr) {
 			this->GetInputPort(BUFFER_INPUT)->FlushData(new BufferData);
 			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(new Mather::Number<uint64_t>);
 			this->GetInputPort(NUMBER_TYPE_INPUT)->FlushData(new Mather::Number<int>);
@@ -123,6 +124,9 @@ namespace Filer {
 			END_ADDRESS_OUTPUT,
 			STRING_OUTPUT
 		};
+		PickStringFromBufferNode(PObject arg = nullptr) {
+
+		}
 		virtual void ProcessData()override {
 
 		}

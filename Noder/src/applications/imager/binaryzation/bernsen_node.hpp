@@ -5,6 +5,7 @@
 namespace Imager {
 	class BernsenNode : public Noder::Node_2_1 {
 	public:
+		BernsenNode(PObject arg = nullptr) {}
 		virtual void ProcessData() override {
 			auto image_data = input_port_1->GetData<ImageData>();
 			auto window_size = (int)(input_port_2->GetData<Mather::Number<long long>>()->value);

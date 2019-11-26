@@ -10,6 +10,7 @@ namespace Mather {
 	template<class Type>							  								\
 	class classname : public BinaryOpNode {										  	\
 	public:																		  	\
+		classname (PObject arg = nullptr){}											\
 		virtual void ProcessData()override {									  	\
 			auto lhs = input_port_1->GetData<Number<Type>>();					  	\
 			auto rhs = input_port_2->GetData<Number<Type>>();					  	\

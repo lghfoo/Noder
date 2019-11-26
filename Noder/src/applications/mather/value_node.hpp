@@ -8,6 +8,7 @@ namespace Mather {
 #define UnaryOpNode Node_1_1
     class ValueNode : public UnaryOpNode{
 	public:
+		ValueNode(PObject arg = nullptr) {}
         virtual void ProcessData()override {
             auto data = input_port->GetData<Data>();
             if (data) {

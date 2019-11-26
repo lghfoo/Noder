@@ -9,6 +9,7 @@ namespace Imager {
 	// image from file
 	class PPMFImageNode : public Node_1_1{
 	public:
+		PPMFImageNode(PObject arg = nullptr){}
 		void ProcessData()override {
 			auto filename_text = input_port->GetData<Text>();
 			if (!filename_text->IsEmpty()) {

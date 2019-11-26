@@ -13,7 +13,7 @@ namespace Texter {
 		enum {
 			STRING_OUTPUT
 		};
-		ToStringNode() {
+		ToStringNode(PObject arg = nullptr) {
 			this->GetInputPort(DATA_INPUT)->FlushData(new Data);
 			this->GetOutputPort(STRING_OUTPUT)->FlushData(new Text);
 		}

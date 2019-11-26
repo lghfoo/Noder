@@ -5,6 +5,7 @@
 namespace Imager {
 	class KittlerNode : public Noder::Node_1_1 {
 	public:
+		KittlerNode(PObject arg = nullptr){}
 		virtual void ProcessData()override {
 			ImageData* data = input_port->GetData<ImageData>();
 			if (!data || data->IsInvalid())return;

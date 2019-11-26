@@ -7,6 +7,7 @@ using namespace Noder;
 namespace Texter {
 	class TextNode : public Node_1_1 {
 	public:
+		TextNode(PObject arg = nullptr){}
 		void ProcessData() override {
 			auto input_text = input_port->GetData<Text>();
 			if (input_port) {
