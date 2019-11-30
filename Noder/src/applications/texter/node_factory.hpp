@@ -1,3 +1,4 @@
+#pragma once
 //#pragma once
 //#include"data.hpp"
 //#include"text_node.hpp"

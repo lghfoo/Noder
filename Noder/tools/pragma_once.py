@@ -5,7 +5,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))  # tools
 noder_path = os.path.join(dir_path, '../')  # Noder
 def preappend_pragma_once(hpp_filename):
     content = ""
-    with io.open(hpp_filename, "r", encoding="utf-8") as hpp_file:
+    with io.open(hpp_filename, "r", encoding="utf-8", errors='ignore') as hpp_file:
         content = hpp_file.read()
     if not content.startswith('#pragma once'):
         content = '#pragma once\n' + content
