@@ -217,5 +217,8 @@
     <ClInclude Include="src\applications\texter\node_factory.hpp">
       <Filter>文件\src\applications\texter</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\imager\grayen_node.hpp">
+      <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
