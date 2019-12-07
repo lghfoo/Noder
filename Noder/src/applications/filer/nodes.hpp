@@ -88,18 +88,19 @@ namespace Filer {
 		PickNumberFromBufferNode(PObject arg = nullptr) {
 			this->GetInputPort(BUFFER_INPUT)->FlushData(new BufferData);
 			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(new Mather::Number<uint64_t>);
-			this->GetInputPort(NUMBER_TYPE_INPUT)->FlushData(new Mather::Number<int>);
-			this->GetInputPort(FORMAT_INPUT)->FlushData(new Mather::Number<int>);
-			this->GetInputPort(ENDIAN_INPUT)->FlushData(new Mather::Number<int>);
+			this->GetInputPort(NUMBER_TYPE_INPUT)->FlushData(new Mather::Number<int32_t>);
+			this->GetInputPort(FORMAT_INPUT)->FlushData(new Mather::Number<int32_t>);
+			this->GetInputPort(ENDIAN_INPUT)->FlushData(new Mather::Number<int32_t>);
 
 			this->GetOutputPort(END_ADDRESS_OUTPUT)->FlushData(new Mather::Number<uint64_t>);
 		}
 		virtual void ProcessData()override {
 			Buffer* buffer_wrapper = this->GetInputPort(BUFFER_INPUT)->GetData<BufferData>()->buffer;
+			if (!buffer_wrapper)return;
 			uint64_t begin_address = this->GetInputPort(BEGIN_ADDRESS_INPUT)->GetData<Mather::Number<uint64_t>>()->value;
-			int number_type = this->GetInputPort(NUMBER_TYPE_INPUT)->GetData<Mather::Number<int>>()->value;
-			int format = this->GetInputPort(FORMAT_INPUT)->GetData<Mather::Number<int>>()->value;
-			int endian = this->GetInputPort(ENDIAN_INPUT)->GetData<Mather::Number<int>>()->value;
+			int number_type = this->GetInputPort(NUMBER_TYPE_INPUT)->GetData<Mather::Number<int32_t>>()->value;
+			int format = this->GetInputPort(FORMAT_INPUT)->GetData<Mather::Number<int32_t>>()->value;
+			int endian = this->GetInputPort(ENDIAN_INPUT)->GetData<Mather::Number<int32_t>>()->value;
 
 			BufferInputStream stream(buffer_wrapper->buffer, buffer_wrapper->size);
 			stream.SetPos(begin_address);

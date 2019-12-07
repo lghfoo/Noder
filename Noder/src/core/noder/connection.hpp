@@ -28,6 +28,7 @@ namespace Noder {
 
 		void SetDstPort(Port* const dst_port) {
 			this->dst_port = dst_port;
+			if (!this->src_port->GetData<Data>())return;
 			this->dst_port->FlushData(this->src_port->GetData<Data>());
 			this->dst_port->UpdateData(this->src_port->GetData<Data>()->GetValue());
 		}
