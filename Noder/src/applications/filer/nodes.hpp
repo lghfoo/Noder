@@ -20,12 +20,12 @@ namespace Filer {
 			this->GetOutputPort(FILELEN_OUTPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>()));
 		}
 		virtual void ProcessData()override {
-			Pointer<InputPort>filename_port = this->GetInputPort(FILENAME_INPUT);
+			auto filename_port = this->GetInputPort(FILENAME_INPUT);
 
 			auto filename = filename_port->GetData<Text>();
 			Mather::Number<uint64_t>filelen = Utility::GetFileSize(filename->value.c_str());
 
-			Pointer<OutputPort>filelen_port = this->GetOutputPort(FILELEN_OUTPUT);
+			auto filelen_port = this->GetOutputPort(FILELEN_OUTPUT);
 			filelen_port->UpdateData(filelen.GetValue());
 		}
 	};

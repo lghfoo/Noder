@@ -5,27 +5,27 @@ namespace Noder {
 	template<int I, int O>
 	class TNode : public Node {
 	private:
-		Pointer<InputPort>input_ports[I];
-		Pointer<OutputPort>output_ports[O];
+		InputPort* input_ports[I];
+		OutputPort* output_ports[O];
 	public:
 		TNode() {
 			for (int i = 0; i < I; i++) {
-				input_ports[i] = Pointer<InputPort>(new InputPort());
+				input_ports[i] = new InputPort();
 				input_ports[i]->AddUpdateDataListener(update_data_listener);
 			}
 			for (int i = 0; i < O; i++) {
-				output_ports[i] = Pointer<OutputPort>(new OutputPort());
+				output_ports[i] = new OutputPort();
 				output_ports[i]->AddFlushDataListener([=](Pointer<Data> data) {
 					output_ports[i]->UpdateData(data->GetValue());
 				});
 			}
 		}
-		Pointer<InputPort>GetInputPort(int index) {
-			return index >= 0 && index < I ? input_ports[index] : Pointer<InputPort>();
+		InputPort* GetInputPort(int index) {
+			return index >= 0 && index < I ? input_ports[index] : nullptr;
 		}
 
-		Pointer<OutputPort>GetOutputPort(int index) {
-			return index >= 0 && index < O ? output_ports[index] : Pointer<OutputPort>();
+		OutputPort* GetOutputPort(int index) {
+			return index >= 0 && index < O ? output_ports[index] : nullptr;
 		}
 	private:
 		Port::UpdateDataListener update_data_listener = [&](PObject data) {
@@ -40,24 +40,24 @@ namespace Noder {
 	class Node_2_1 : public Node{
 	public:
 		Node_2_1() {
-			this->SetInputPort1(Pointer<InputPort>(new InputPort()));
-			this->SetInputPort2(Pointer<InputPort>(new InputPort()));
-			this->SetOutputPort(Pointer<OutputPort>(new OutputPort()));
+			this->SetInputPort1(new InputPort());
+			this->SetInputPort2(new InputPort());
+			this->SetOutputPort(new OutputPort());
 		}
 
-		Pointer<InputPort> GetInputPort1() {
+		InputPort* GetInputPort1() {
 			return input_port_1;
 		}
 
-		Pointer<InputPort> GetInputPort2() {
+		InputPort* GetInputPort2() {
 			return input_port_2;
 		}
 
-		Pointer<OutputPort> GetOutputPort() {
+		OutputPort* GetOutputPort() {
 			return output_port;
 		}
 	private:
-		void SetInputPort1(const Pointer<InputPort>& input_port) {
+		void SetInputPort1(InputPort* input_port) {
 			this->input_port_1 = input_port;
 			if (input_port_1) {
 				//input_port_1->AddFlushDataListener(flush_data_listener);
@@ -65,14 +65,14 @@ namespace Noder {
 			}
 		}
 
-		void SetInputPort2(const Pointer<InputPort>& input_port) {
+		void SetInputPort2(InputPort* input_port) {
 			this->input_port_2 = input_port;
 			if (input_port_2) {
 				//input_port_2->AddFlushDataListener(flush_data_listener);
 				input_port_2->AddUpdateDataListener(update_data_listener);
 			}
 		}
-		void SetOutputPort(const Pointer<OutputPort>& output_port) {
+		void SetOutputPort(OutputPort* output_port) {
 			this->output_port = output_port;
 			//if (this->output_port) {
 			//	this->output_port->AddFlushDataListener(flush_data_listener);
@@ -90,32 +90,32 @@ namespace Noder {
 			}
 		};
 	protected:
-		Pointer<InputPort> input_port_1;
-		Pointer<InputPort> input_port_2;
-		Pointer<OutputPort> output_port;
+		InputPort* input_port_1;
+		InputPort* input_port_2;
+		OutputPort* output_port;
 	};
 
 	class Node_1_1 : public Node {
 	public:
 		Node_1_1() {
-			this->SetInputPort(Pointer<InputPort>(new InputPort()));
-			this->SetOutputPort(Pointer<OutputPort>(new OutputPort()));
+			this->SetInputPort(new InputPort());
+			this->SetOutputPort(new OutputPort());
 		}
-		Pointer<InputPort> GetInputPort() {
+		InputPort* GetInputPort() {
 			return input_port;
 		}
-		Pointer<OutputPort> GetOutputPort() {
+		OutputPort* GetOutputPort() {
 			return output_port;
 		}
 	private:
-		void SetInputPort(const Pointer<InputPort>& input_port) {
+		void SetInputPort(InputPort* input_port) {
 			this->input_port = input_port;
 			if (this->input_port) {
 				//this->input_port->AddFlushDataListener(flush_data_listener);
 				this->input_port->AddUpdateDataListener(update_data_listener);
 			}
 		}
-		void SetOutputPort(const Pointer<OutputPort>& output_port) {
+		void SetOutputPort(OutputPort* output_port) {
 			this->output_port = output_port;
 			//if (this->output_port) {
 			//	this->output_port->AddFlushDataListener(flush_data_listener);
@@ -133,7 +133,7 @@ namespace Noder {
 			}
 		};
 	protected:
-		Pointer<InputPort> input_port;
-		Pointer<OutputPort> output_port;
+		InputPort* input_port;
+		OutputPort* output_port;
 	};
 }
