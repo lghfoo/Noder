@@ -15,7 +15,7 @@ namespace Noder {
 			}
 			for (int i = 0; i < O; i++) {
 				output_ports[i] = Pointer<OutputPort>(new OutputPort());
-				output_ports[i]->AddFlushDataListener([=](Data* data) {
+				output_ports[i]->AddFlushDataListener([=](Pointer<Data> data) {
 					output_ports[i]->UpdateData(data->GetValue());
 				});
 			}
@@ -84,7 +84,7 @@ namespace Noder {
 				this->ProcessData();
 			}
 		};
-		Port::FlushDataListener flush_data_listener = [&](Data* data) {
+		Port::FlushDataListener flush_data_listener = [&](Pointer<Data> data) {
 			if (this->input_port_1->HasData() && input_port_2->HasData() && output_port) {
 				this->ProcessData();
 			}
@@ -127,7 +127,7 @@ namespace Noder {
 				this->ProcessData();
 			}
 		};
-		Port::FlushDataListener flush_data_listener = [&](Data* data) {
+		Port::FlushDataListener flush_data_listener = [&](Pointer<Data> data) {
 			if (this->input_port->HasData() && output_port) {
 				this->ProcessData();
 			}

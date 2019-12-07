@@ -10,7 +10,7 @@ namespace Imager {
 		void ProcessData()override {
 			printf("Grayen Process Data\n");
 			if (!this->input_port->HasData())return;
-			ImageData* input_image = this->input_port->GetData<ImageData>();
+			auto input_image = this->input_port->GetData<ImageData>();
 			if (!input_image->IsValid() || !input_image->HasPixels())return;
 			printf("Grayen Begin...\n");
 			auto image = input_image->image;

@@ -14,8 +14,8 @@ namespace Texter {
 			STRING_OUTPUT
 		};
 		ToStringNode(PObject arg = nullptr) {
-			this->GetInputPort(DATA_INPUT)->FlushData(new Data);
-			this->GetOutputPort(STRING_OUTPUT)->FlushData(new Text);
+			this->GetInputPort(DATA_INPUT)->FlushData(Pointer<Data>(new Data));
+			this->GetOutputPort(STRING_OUTPUT)->FlushData(Pointer<Data>(new Text));
 		}
 		virtual void ProcessData() override {
 			auto data_input = this->GetInputPort(DATA_INPUT)->GetData<Data>();

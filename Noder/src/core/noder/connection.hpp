@@ -8,7 +8,7 @@ namespace Noder {
 		Port::UpdateDataListener update_data_listener = [=](PObject const data) {
 			this->dst_port->NotifyUpdate(data);
 		};
-		Port::FlushDataListener flush_data_listener = [=](Data* const data) {
+		Port::FlushDataListener flush_data_listener = [=](Pointer<Data> data) {
 			this->dst_port->FlushData(data);
 			this->dst_port->UpdateData(this->src_port->GetData<Data>()->GetValue());
 		};

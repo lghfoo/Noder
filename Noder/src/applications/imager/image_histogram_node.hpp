@@ -20,7 +20,6 @@ namespace Imager {
 					histogram[gray_level]++;
 				}
 			}
-			printf("histogram size: %d\n", histogram.size());
 			output_port->UpdateData(&histogram);
 		}
 	private:

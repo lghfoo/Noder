@@ -4,12 +4,12 @@
 namespace Noder {
 	class Port : public NObject{
 	public:
-		using FlushDataListener = Listener<void, Data* const>;
+		using FlushDataListener = Listener<void, Pointer<Data>>;
 		using UpdateDataListener = Listener<void, PObject const>;
 		enum PortType{INPUT_PORT, OUTPUT_PORT};
 	private:
 		//String port_name = "Port";
-		Data* data = nullptr;
+		Pointer<Data> data;
 		LinkedList<FlushDataListener> flush_data_listeners = LinkedList<FlushDataListener>({});
 		LinkedList<UpdateDataListener> update_data_listeners = LinkedList<UpdateDataListener>({});
 	protected:
@@ -24,10 +24,7 @@ namespace Noder {
 		bool IsOutputPort() {
 			return this->GetPortType() == OUTPUT_PORT;
 		}
-		void FlushData(Data* const data) {
-			if (this->data != nullptr && this->data != data) {
-				delete this->data;
-			}
+		void FlushData(Pointer<Data> data) {
 			this->data = data;
 			this->NotifyFlush(data);
 		}
@@ -45,7 +42,7 @@ namespace Noder {
 				listener(data);
 			}
 		}
-		void NotifyFlush(Data* const data) {
+		void NotifyFlush(Pointer<Data> data) {
 			for (auto listener : flush_data_listeners) {
 				listener(data);
 			}
@@ -66,8 +63,8 @@ namespace Noder {
 			this->update_data_listeners.Remove(listener);
 		}
 		template<typename Type>
-		Type* GetData() {
-			auto ret = dynamic_cast<Type*>(data);
+		Pointer<Type> GetData() {
+			auto ret = std::dynamic_pointer_cast<Type>(data);
 			if (!ret) {
 				return nullptr;
 			}

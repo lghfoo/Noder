@@ -8,7 +8,7 @@ namespace Imager {
 	public:
 		ImageNode(PObject arg = nullptr){}
 		void ProcessData()override {
-			ImageData* input_image = this->input_port->GetData<ImageData>();
+			auto input_image = this->input_port->GetData<ImageData>();
 			this->output_port->UpdateData(input_image->GetValue());
 		}
 	};

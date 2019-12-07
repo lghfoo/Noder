@@ -7,7 +7,7 @@ namespace Imager {
 	public:
 		KittlerNode(PObject arg = nullptr){}
 		virtual void ProcessData()override {
-			ImageData* data = input_port->GetData<ImageData>();
+			auto data = input_port->GetData<ImageData>();
 			if (!data || data->IsInvalid())return;
 			Image* input = data->image;
 			output.SetSize(input->width, input->height);

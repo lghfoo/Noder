@@ -16,8 +16,8 @@ namespace Filer {
 			FILELEN_OUTPUT	// Number<uint64_t>
 		};
 		FilelenNode(PObject arg = nullptr) {
-			this->GetInputPort(FILENAME_INPUT)->FlushData(new Text());
-			this->GetOutputPort(FILELEN_OUTPUT)->FlushData(new Mather::Number<uint64_t>());
+			this->GetInputPort(FILENAME_INPUT)->FlushData(Pointer<Data>(new Text()));
+			this->GetOutputPort(FILELEN_OUTPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>()));
 		}
 		virtual void ProcessData()override {
 			Pointer<InputPort>filename_port = this->GetInputPort(FILENAME_INPUT);
@@ -41,12 +41,12 @@ namespace Filer {
 			BUFFER_OUTPUT
 		};
 		PickBufferFromFileNode(PObject arg = nullptr) {
-			this->GetInputPort(FILENAME_INPUT)->FlushData(new Text);
-			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(new Mather::Number<uint64_t>);
-			this->GetInputPort(BUFFER_SIZE_INPUT)->FlushData(new Mather::Number<uint64_t>);
+			this->GetInputPort(FILENAME_INPUT)->FlushData(Pointer<Data>(new Text));
+			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>));
+			this->GetInputPort(BUFFER_SIZE_INPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>));
 
-			this->GetOutputPort(END_ADDRESS_OUTPUT)->FlushData(new Mather::Number<uint64_t>);
-			this->GetOutputPort(BUFFER_OUTPUT)->FlushData(new BufferData);
+			this->GetOutputPort(END_ADDRESS_OUTPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>));
+			this->GetOutputPort(BUFFER_OUTPUT)->FlushData(Pointer<Data>(new BufferData));
 		}
 		virtual void ProcessData()override {
 			auto filename = this->GetInputPort(FILENAME_INPUT)->GetData<Text>()->value.c_str();
@@ -86,13 +86,13 @@ namespace Filer {
 			NUMBER_OUTPUT			// Number<???>
 		};
 		PickNumberFromBufferNode(PObject arg = nullptr) {
-			this->GetInputPort(BUFFER_INPUT)->FlushData(new BufferData);
-			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(new Mather::Number<uint64_t>);
-			this->GetInputPort(NUMBER_TYPE_INPUT)->FlushData(new Mather::Number<int32_t>);
-			this->GetInputPort(FORMAT_INPUT)->FlushData(new Mather::Number<int32_t>);
-			this->GetInputPort(ENDIAN_INPUT)->FlushData(new Mather::Number<int32_t>);
+			this->GetInputPort(BUFFER_INPUT)->FlushData(Pointer<Data>(new BufferData));
+			this->GetInputPort(BEGIN_ADDRESS_INPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>));
+			this->GetInputPort(NUMBER_TYPE_INPUT)->FlushData(Pointer<Data>(new Mather::Number<int32_t>));
+			this->GetInputPort(FORMAT_INPUT)->FlushData(Pointer<Data>(new Mather::Number<int32_t>));
+			this->GetInputPort(ENDIAN_INPUT)->FlushData(Pointer<Data>(new Mather::Number<int32_t>));
 
-			this->GetOutputPort(END_ADDRESS_OUTPUT)->FlushData(new Mather::Number<uint64_t>);
+			this->GetOutputPort(END_ADDRESS_OUTPUT)->FlushData(Pointer<Data>(new Mather::Number<uint64_t>));
 		}
 		virtual void ProcessData()override {
 			Buffer* buffer_wrapper = this->GetInputPort(BUFFER_INPUT)->GetData<BufferData>()->buffer;
@@ -109,7 +109,7 @@ namespace Filer {
 				static_cast<BufferInputStream::Endian>(endian));
 			uint64_t end_address = stream.GetPos();
 
-			this->GetOutputPort(NUMBER_OUTPUT)->FlushData(number);
+			this->GetOutputPort(NUMBER_OUTPUT)->FlushData(Pointer<Data>(number));
 			this->GetOutputPort(END_ADDRESS_OUTPUT)->UpdateData(&end_address);
 		}
 	};
