@@ -53,8 +53,9 @@ namespace Filer {
 		}
 
 		template<typename T>
-		T Next(Mode mode = Binary, Endian endian = LittleEndian) {
-			SkipWhiteSpaces();
+		T Next(Mode mode = Binary, Endian endian = LittleEndian, bool SkipWhiteSpace = true) {
+			if(SkipWhiteSpace)
+				SkipWhiteSpaces();
 			if (mode == Binary) {
 				return NextFromBinary<T>(endian);
 			}
@@ -71,34 +72,34 @@ namespace Filer {
 			switch (type)
 			{
 			case Mather::UINT8:
-				Ret = new Mather::Number<uint8_t>(Next<uint8_t>(mode, endian));
+				Ret = new Mather::Number<uint8_t>(Next<uint8_t>(mode, endian, false));
 				break;
 			case Mather::INT8:
-				Ret = new Mather::Number<int8_t>(Next<int8_t>(mode, endian));
+				Ret = new Mather::Number<int8_t>(Next<int8_t>(mode, endian, false));
 				break;
 			case Mather::UINT16:
-				Ret = new Mather::Number<uint16_t>(Next<uint16_t>(mode, endian));
+				Ret = new Mather::Number<uint16_t>(Next<uint16_t>(mode, endian, false));
 				break;
 			case Mather::INT16:
-				Ret = new Mather::Number<int16_t>(Next<int16_t>(mode, endian));
+				Ret = new Mather::Number<int16_t>(Next<int16_t>(mode, endian, false));
 				break;
 			case Mather::UINT32:
-				Ret = new Mather::Number<uint32_t>(Next<uint32_t>(mode, endian));
+				Ret = new Mather::Number<uint32_t>(Next<uint32_t>(mode, endian, false));
 				break;
 			case Mather::INT32:
-				Ret = new Mather::Number<int32_t>(Next<int32_t>(mode, endian));
+				Ret = new Mather::Number<int32_t>(Next<int32_t>(mode, endian, false));
 				break;
 			case Mather::UINT64:
-				Ret = new Mather::Number<uint64_t>(Next<uint64_t>(mode, endian));
+				Ret = new Mather::Number<uint64_t>(Next<uint64_t>(mode, endian, false));
 				break;
 			case Mather::INT64:
-				Ret = new Mather::Number<int64_t>(Next<int64_t>(mode, endian));
+				Ret = new Mather::Number<int64_t>(Next<int64_t>(mode, endian, false));
 				break;
 			case Mather::FLOAT32:
-				Ret = new Mather::Number<float_t>(Next<float_t>(mode, endian));
+				Ret = new Mather::Number<float_t>(Next<float_t>(mode, endian, false));
 				break;
 			case Mather::FLOAT64:
-				Ret = new Mather::Number<double_t>(Next<double_t>(mode, endian));
+				Ret = new Mather::Number<double_t>(Next<double_t>(mode, endian, false));
 				break;
 			default:
 				break;

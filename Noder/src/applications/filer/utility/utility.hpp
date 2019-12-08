@@ -14,5 +14,10 @@ namespace Filer {
 			stream.close();
 			return len;
 		}
+
+		static bool FileExist(const char* filename) {
+			struct stat buffer;
+			return !stat(filename, &buffer);
+		}
 	};
 }

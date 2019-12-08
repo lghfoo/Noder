@@ -50,9 +50,10 @@ namespace Filer {
 		}
 		virtual void ProcessData()override {
 			auto filename = this->GetInputPort(FILENAME_INPUT)->GetData<Text>()->value.c_str();
+			if (!Filer::Utility::FileExist(filename) || Filer::Utility::GetFileSize(filename) <= 0)return;
 			auto start_address = this->GetInputPort(BEGIN_ADDRESS_INPUT)->GetData<Mather::Number<uint64_t>>()->value;
 			auto buffer_size = this->GetInputPort(BUFFER_SIZE_INPUT)->GetData<Mather::Number<uint64_t>>()->value;
-
+			if (buffer_size <= 0)return;
 			buffer.Reset(buffer_size);
 			auto file = fopen(filename, "rb");
 			fseek(file, start_address, SEEK_SET);
@@ -96,7 +97,7 @@ namespace Filer {
 		}
 		virtual void ProcessData()override {
 			Buffer* buffer_wrapper = this->GetInputPort(BUFFER_INPUT)->GetData<BufferData>()->buffer;
-			if (!buffer_wrapper)return;
+			if (!buffer_wrapper || buffer_wrapper->size <= 0)return;
 			uint64_t begin_address = this->GetInputPort(BEGIN_ADDRESS_INPUT)->GetData<Mather::Number<uint64_t>>()->value;
 			int number_type = this->GetInputPort(NUMBER_TYPE_INPUT)->GetData<Mather::Number<int32_t>>()->value;
 			int format = this->GetInputPort(FORMAT_INPUT)->GetData<Mather::Number<int32_t>>()->value;
