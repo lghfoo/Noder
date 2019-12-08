@@ -69,6 +69,9 @@
     <Filter Include="文件\src\applications\imager\binaryzation">
       <UniqueIdentifier>{7fb9fd93-12f3-4a1b-9526-eb426dd74e9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="文件\src\applications\imager\noise">
+      <UniqueIdentifier>{64197ee7-1030-4a6a-af27-48a9f97e6c3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test\main.cpp">
@@ -219,6 +222,9 @@
     </ClInclude>
     <ClInclude Include="src\applications\imager\grayen_node.hpp">
       <Filter>文件\src\applications\imager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\applications\imager\noise\gaussian_noise_node.hpp">
+      <Filter>文件\src\applications\imager\noise</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
