@@ -226,5 +226,8 @@
     <ClInclude Include="src\applications\imager\noise\gaussian_noise_node.hpp">
       <Filter>文件\src\applications\imager\noise</Filter>
     </ClInclude>
+    <ClInclude Include="src\applications\imager\noise\voronoi_noise_node.hpp">
+      <Filter>文件\src\applications\imager\noise</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

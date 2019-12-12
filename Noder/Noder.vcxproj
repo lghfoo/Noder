@@ -143,6 +143,7 @@
     <ClInclude Include="src\applications\imager\image_histogram_node.hpp" />
     <ClInclude Include="src\applications\imager\node_factory.hpp" />
     <ClInclude Include="src\applications\imager\noise\gaussian_noise_node.hpp" />
+    <ClInclude Include="src\applications\imager\noise\voronoi_noise_node.hpp" />
     <ClInclude Include="src\applications\imager\ppm_fimage_node.hpp" />
     <ClInclude Include="src\applications\imager\image_node.hpp" />
     <ClInclude Include="src\applications\mather\data.hpp" />
