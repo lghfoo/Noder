@@ -143,12 +143,16 @@
     <ClInclude Include="src\applications\imager\image_histogram_node.hpp" />
     <ClInclude Include="src\applications\imager\node_factory.hpp" />
     <ClInclude Include="src\applications\imager\noise\gaussian_noise_node.hpp" />
+    <ClInclude Include="src\applications\imager\noise\perlin_noise_node.hpp" />
+    <ClInclude Include="src\applications\imager\noise\value_noise_node.hpp" />
     <ClInclude Include="src\applications\imager\noise\voronoi_noise_node.hpp" />
+    <ClInclude Include="src\applications\imager\noise\white_noise_node.hpp" />
     <ClInclude Include="src\applications\imager\ppm_fimage_node.hpp" />
     <ClInclude Include="src\applications\imager\image_node.hpp" />
     <ClInclude Include="src\applications\mather\data.hpp" />
     <ClInclude Include="src\applications\mather\node_factory.hpp" />
     <ClInclude Include="src\applications\mather\op_node.hpp" />
+    <ClInclude Include="src\applications\mather\utility.hpp" />
     <ClInclude Include="src\applications\mather\value_node.hpp" />
     <ClInclude Include="src\applications\texter\data.hpp" />
     <ClInclude Include="src\applications\texter\nodes.hpp" />
