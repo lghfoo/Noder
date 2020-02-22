@@ -120,7 +120,7 @@ namespace Imager {
 		Image(const Image& image){
 			if (image.width <= 0 || image.height <= 0)return;
 			if (this->width == image.width && this->height == image.height) {
-				memcpy(this->pixels, image.pixels, sizeof(Pixel) * (height * width));
+				memcpy(this->pixels, image.pixels, sizeof(Pixel) * (size_t(height) * size_t(width)));
 				return;
 			}
 			if (this->pixels) {
@@ -129,7 +129,7 @@ namespace Imager {
 			this->width = image.width;
 			this->height = image.height;
 			this->pixels = new Pixel[width * height];
-			memcpy(this->pixels, image.pixels, sizeof(Pixel) * (height * width));
+			memcpy(this->pixels, image.pixels, sizeof(Pixel) * (size_t(height) * size_t(width)));
 		}
 
 		void ClearData() {

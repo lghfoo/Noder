@@ -5,8 +5,8 @@ namespace Noder {
 	template<int I, int O>
 	class TNode : public Node {
 	private:
-		InputPort* input_ports[I];
-		OutputPort* output_ports[O];
+		InputPort* input_ports[I] = {};
+		OutputPort* output_ports[O] = {};
 	public:
 		TNode() {
 			for (int i = 0; i < I; i++) {
